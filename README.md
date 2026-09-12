@@ -17,6 +17,7 @@
 9. [Contribution Guidelines](#contribution-guidelines)
 10. [Project Roadmap](#project-roadmap)
 11. [License](#license)
+12. [Further Reading](#further-reading)
 
 ---
 
@@ -260,6 +261,16 @@ If you're new to the project, look for issues labeled `good first issue`.
 ## License
 
 This project is released under the MIT License. See `LICENSE` for details.
+
+---
+
+## Further Reading
+
+- **[Architecture Deep-Dive](docs/ARCHITECTURE.md)** — module map and the reasoning behind key design decisions (why run history is shared across prompt versions, why regressions and drift are separate code paths, why a mock LLM client is a permanent feature, not a testing shortcut).
+- **[Known Limitations](docs/LIMITATIONS.md)** — an honest account of what this project doesn't yet do well: dataset size, LLM-judge reliability, statistical significance, latency/cost measurement.
+- **[Blog Post](docs/blog.md)** — the problem, the approach, and the design decision behind separating sudden regressions from slow drift.
+- **[Changelog](docs/CHANGELOG.md)** — dated history of what's changed, including a bug fix worth knowing about (run history was originally split per prompt version, silently breaking cross-version diffing).
+- **[Demo](docs/DEMO.md)** — a suggested script for a short walkthrough video.
 
 ---
 
