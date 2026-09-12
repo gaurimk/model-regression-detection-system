@@ -1,0 +1,335 @@
+{
+  "dataset_version": "1.0",
+  "created": "2026-09-01",
+  "notes": "Seed set of hand-verified test cases. Expand this over time using real production failure cases, per the interview talking point in the build guide.",
+  "cases": [
+    {
+      "id": "bill-001",
+      "input_email": "Hi, I noticed I was charged $49.99 twice on my card this month for the Pro plan. Can you please refund the duplicate charge?",
+      "expected_category": "billing",
+      "expected_summary": "Customer was double-charged for the Pro plan and wants a refund.",
+      "difficulty": "easy",
+      "notes": "Canonical billing case with a clear ask."
+    },
+    {
+      "id": "bill-002",
+      "input_email": "My invoice from last week shows a price that doesn't match what was advertised on your pricing page. Can someone explain the discrepancy?",
+      "expected_category": "billing",
+      "expected_summary": "Customer disputes a mismatch between an invoice and the advertised price.",
+      "difficulty": "medium",
+      "notes": "Billing dispute without an explicit refund request."
+    },
+    {
+      "id": "bill-003",
+      "input_email": "I want to cancel my subscription and get a prorated refund for the rest of the month.",
+      "expected_category": "billing",
+      "expected_summary": "Customer wants to cancel their subscription and receive a prorated refund.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "bill-004",
+      "input_email": "Why does my receipt say I was charged in EUR when I signed up with a USD card?",
+      "expected_category": "billing",
+      "expected_summary": "Customer is confused about being charged in a different currency than expected.",
+      "difficulty": "medium",
+      "notes": "Currency/billing edge case."
+    },
+    {
+      "id": "bill-005",
+      "input_email": "can u check my card on file it keeps declining but i have money",
+      "expected_category": "billing",
+      "expected_summary": "Customer's payment card is declining despite having sufficient funds.",
+      "difficulty": "edge_case",
+      "notes": "Lowercase, informal grammar, no punctuation."
+    },
+    {
+      "id": "bill-006",
+      "input_email": "I upgraded to the annual plan but I'm still being billed monthly. Please fix this.",
+      "expected_category": "billing",
+      "expected_summary": "Customer upgraded to an annual plan but is still being billed monthly.",
+      "difficulty": "medium",
+      "notes": ""
+    },
+    {
+      "id": "bill-007",
+      "input_email": "Do you offer student discounts or nonprofit pricing?",
+      "expected_category": "billing",
+      "expected_summary": "Customer is asking about student or nonprofit discount pricing.",
+      "difficulty": "easy",
+      "notes": "Pricing question rather than a complaint."
+    },
+    {
+      "id": "bill-008",
+      "input_email": "Great, ANOTHER surprise charge on my card. Love that for me. Can you explain what this $12 fee is for?",
+      "expected_category": "billing",
+      "expected_summary": "Customer is asking, sarcastically, what an unexpected $12 charge is for.",
+      "difficulty": "edge_case",
+      "notes": "Sarcastic tone; must not be misread as a technical complaint."
+    },
+    {
+      "id": "tech-001",
+      "input_email": "The mobile app crashes immediately every time I try to open the settings page.",
+      "expected_category": "technical",
+      "expected_summary": "The mobile app crashes when the customer opens the settings page.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "tech-002",
+      "input_email": "I keep getting a 'session expired' error even right after I log in on the website.",
+      "expected_category": "technical",
+      "expected_summary": "Customer gets a session-expired error immediately after logging in on the website.",
+      "difficulty": "medium",
+      "notes": ""
+    },
+    {
+      "id": "tech-003",
+      "input_email": "Upload button on the dashboard does nothing when I click it. Tried Chrome and Firefox.",
+      "expected_category": "technical",
+      "expected_summary": "The dashboard's upload button is unresponsive in multiple browsers.",
+      "difficulty": "medium",
+      "notes": ""
+    },
+    {
+      "id": "tech-004",
+      "input_email": "not working. broken. fix it.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports that something is broken, without specifying what.",
+      "difficulty": "edge_case",
+      "notes": "Extremely short, no detail -- tests graceful handling of low-information input."
+    },
+    {
+      "id": "tech-005",
+      "input_email": "I can't reset my password -- the reset link in the email leads to a blank page.",
+      "expected_category": "technical",
+      "expected_summary": "The password reset link leads to a blank page instead of the reset form.",
+      "difficulty": "medium",
+      "notes": "Could plausibly be tagged 'account' too -- ambiguous by design."
+    },
+    {
+      "id": "tech-006",
+      "input_email": "Export to CSV has been stuck at 'processing' for over an hour now.",
+      "expected_category": "technical",
+      "expected_summary": "The CSV export feature has been stuck processing for over an hour.",
+      "difficulty": "medium",
+      "notes": ""
+    },
+    {
+      "id": "tech-007",
+      "input_email": "Getting error code 502 whenever I try to submit the form on your site.",
+      "expected_category": "technical",
+      "expected_summary": "Customer receives a 502 error when submitting a form on the site.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "tech-008",
+      "input_email": "hola, la aplicacion no funciona, se cierra sola cada vez que abro el chat",
+      "expected_category": "technical",
+      "expected_summary": "The app closes on its own whenever the customer opens the chat feature.",
+      "difficulty": "edge_case",
+      "notes": "Non-English input, tests multilingual handling."
+    },
+    {
+      "id": "acct-001",
+      "input_email": "I need to update the email address associated with my account, the old one is no longer active.",
+      "expected_category": "account",
+      "expected_summary": "Customer wants to update the email address on their account.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "acct-002",
+      "input_email": "Please permanently delete my account and all associated data.",
+      "expected_category": "account",
+      "expected_summary": "Customer is requesting permanent deletion of their account and data.",
+      "difficulty": "easy",
+      "notes": "High-stakes request; must be classified correctly every time."
+    },
+    {
+      "id": "acct-003",
+      "input_email": "Can I merge two accounts I accidentally created with different emails?",
+      "expected_category": "account",
+      "expected_summary": "Customer wants to merge two accounts created under different emails.",
+      "difficulty": "medium",
+      "notes": ""
+    },
+    {
+      "id": "acct-004",
+      "input_email": "My username shows up wrong on my public profile, how do I change it?",
+      "expected_category": "account",
+      "expected_summary": "Customer wants to change an incorrect username on their public profile.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "acct-005",
+      "input_email": "someone else logged into my account from a different country, is that normal",
+      "expected_category": "account",
+      "expected_summary": "Customer noticed an unfamiliar login to their account from another country.",
+      "difficulty": "edge_case",
+      "notes": "Could be read as a security/technical issue -- expected as account for ownership context."
+    },
+    {
+      "id": "acct-006",
+      "input_email": "How do I add a second team member to my workspace account?",
+      "expected_category": "account",
+      "expected_summary": "Customer wants to add a second team member to their workspace account.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "gen-001",
+      "input_email": "Just wanted to say the new dashboard redesign looks great, nice work!",
+      "expected_category": "general",
+      "expected_summary": "Customer is giving positive feedback about the new dashboard redesign.",
+      "difficulty": "easy",
+      "notes": "Positive feedback, no action required."
+    },
+    {
+      "id": "gen-002",
+      "input_email": "Do you have an office in Berlin? Just curious about your company's presence in Europe.",
+      "expected_category": "general",
+      "expected_summary": "Customer is asking whether the company has an office in Berlin.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "gen-003",
+      "input_email": "What's your policy on data retention for enterprise customers?",
+      "expected_category": "general",
+      "expected_summary": "Customer is asking about the company's data retention policy for enterprise customers.",
+      "difficulty": "medium",
+      "notes": "Could be misread as 'account' -- policy question, not account-specific action."
+    },
+    {
+      "id": "gen-004",
+      "input_email": "hey",
+      "expected_category": "general",
+      "expected_summary": "Customer sent a message with no discernible request or issue.",
+      "difficulty": "edge_case",
+      "notes": "Single word, no content -- tests handling of empty-signal input."
+    },
+    {
+      "id": "gen-005",
+      "input_email": "Are you hiring? I'd love to work on your support team.",
+      "expected_category": "general",
+      "expected_summary": "Customer is asking about job openings on the support team.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "amb-001",
+      "input_email": "I was billed for a plan I can't even log into anymore, what's going on?",
+      "expected_category": "billing",
+      "expected_summary": "Customer was billed for a plan they can no longer log into.",
+      "difficulty": "edge_case",
+      "notes": "Ambiguous billing vs. technical -- billing is the primary complaint (being charged), login issue is secondary."
+    },
+    {
+      "id": "amb-002",
+      "input_email": "My account got suspended and I think it's because of a failed payment -- can you look into it?",
+      "expected_category": "account",
+      "expected_summary": "Customer's account was suspended, possibly due to a failed payment.",
+      "difficulty": "edge_case",
+      "notes": "Ambiguous account vs. billing -- account status is the primary issue reported."
+    },
+    {
+      "id": "amb-003",
+      "input_email": "The export feature I'm paying extra for isn't working, and I want a partial refund for the time it's been broken.",
+      "expected_category": "billing",
+      "expected_summary": "Customer wants a partial refund because a paid feature has been broken.",
+      "difficulty": "edge_case",
+      "notes": "Ambiguous technical vs. billing -- the explicit refund ask makes billing the primary category."
+    },
+    {
+      "id": "amb-004",
+      "input_email": "not sure if this is the right place but nothing on the site works and I've been charged twice this week",
+      "expected_category": "billing",
+      "expected_summary": "Customer reports site issues and being charged twice in one week.",
+      "difficulty": "edge_case",
+      "notes": "Deliberately messy, mixes technical complaint with billing complaint; refund/charge concern should win as primary."
+    },
+    {
+      "id": "typo-001",
+      "input_email": "i cant acess my acount, it keps saying wrng password evn tho im sure its rite",
+      "expected_category": "account",
+      "expected_summary": "Customer cannot access their account despite entering what they believe is the correct password.",
+      "difficulty": "edge_case",
+      "notes": "Heavy typos test robustness of classification."
+    },
+    {
+      "id": "typo-002",
+      "input_email": "yur app chagred my card twise this monthe pls help",
+      "expected_category": "billing",
+      "expected_summary": "Customer's card was charged twice this month by the app.",
+      "difficulty": "edge_case",
+      "notes": "Heavy typos, billing category."
+    },
+    {
+      "id": "short-001",
+      "input_email": "Refund please.",
+      "expected_category": "billing",
+      "expected_summary": "Customer is requesting a refund.",
+      "difficulty": "edge_case",
+      "notes": "Minimal input length."
+    },
+    {
+      "id": "short-002",
+      "input_email": "App broken.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports that the app is broken.",
+      "difficulty": "edge_case",
+      "notes": "Minimal input length."
+    },
+    {
+      "id": "long-001",
+      "input_email": "I'm writing because I've had a frustrating week with your product. First, the mobile app crashed three times while I was trying to complete a report for my manager. Then, when I finally got it working on desktop, the export button just spun forever and never actually downloaded the file. I ended up having to recreate the whole report manually, which cost me almost two hours. I'd appreciate an explanation of what's going on and whether this is a known issue.",
+      "expected_category": "technical",
+      "expected_summary": "Customer experienced repeated app crashes and a stuck export feature, costing significant time.",
+      "difficulty": "hard",
+      "notes": "Long, multi-issue email -- tests whether the model correctly identifies the dominant (technical) theme rather than getting lost in narrative detail."
+    },
+    {
+      "id": "long-002",
+      "input_email": "Hello, I hope you're doing well. I've been a customer for about two years now and generally I've been happy, but this month something strange happened with my billing. I was charged the annual amount even though I'm fairly sure I'm still on the monthly plan, and when I checked my account settings it does say 'monthly' there, so I'm confused about why the higher amount was charged. Could someone look into this and either correct the charge or explain what happened?",
+      "expected_category": "billing",
+      "expected_summary": "Customer was charged an annual amount despite being on a monthly plan and wants an explanation or correction.",
+      "difficulty": "hard",
+      "notes": "Long, polite, indirect -- tests extraction of the core billing issue from a lot of context."
+    },
+    {
+      "id": "gen-006",
+      "input_email": "Loved the webinar last week, will the recording be posted anywhere?",
+      "expected_category": "general",
+      "expected_summary": "Customer is asking whether the webinar recording will be made available.",
+      "difficulty": "easy",
+      "notes": ""
+    },
+    {
+      "id": "acct-007",
+      "input_email": "I'm the admin on our team plan and need to remove a former employee's access immediately.",
+      "expected_category": "account",
+      "expected_summary": "Admin wants to remove a former employee's access from the team plan.",
+      "difficulty": "medium",
+      "notes": ""
+    },
+    {
+      "id": "tech-009",
+      "input_email": "Notifications stopped coming through on iOS after the last update, Android seems fine.",
+      "expected_category": "technical",
+      "expected_summary": "Push notifications stopped working on iOS after the latest app update.",
+      "difficulty": "medium",
+      "notes": ""
+    },
+    {
+      "id": "bill-009",
+      "input_email": "I was promised a free trial extension by support chat but I was still charged today.",
+      "expected_category": "billing",
+      "expected_summary": "Customer was charged despite being promised a free trial extension.",
+      "difficulty": "medium",
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# Central configuration for the Model Regression Detection System.
+# Edit thresholds here to control how sensitive alerting is.
+
+dataset_path: "data/golden_dataset.json"
+prompts_dir: "prompts"
+runs_dir: "runs"
+reports_dir: "reports"
+
+thresholds:
+  # Percentage-point drop in overall pass rate vs. the previous run.
+  warning_delta_percent: 3
+  critical_delta_percent: 8
+
+drift:
+  # Number of most recent runs to include in the rolling average.
+  window_size: 7
+  # If the rolling average pass rate falls below this absolute threshold,
+  # fire a "slow drift" warning even if no single run crossed a hard threshold.
+  min_rolling_pass_rate: 0.90
+
+judge:
+  # Score range used by the LLM-as-judge for summary relevance.
+  min_score: 1
+  max_score: 5
+  # Minimum acceptable judge score for a case to count as "passing" on relevance.
+  passing_score: 3

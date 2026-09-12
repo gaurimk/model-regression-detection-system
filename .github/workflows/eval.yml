@@ -1,0 +1,78 @@
+name: Model Regression Eval
+
+on:
+  pull_request:
+    paths:
+      - "prompts/**"
+      - "data/golden_dataset.json"
+      - "src/**"
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Determine changed prompt files
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }} -- 'prompts/*.yaml' | tr '\n' ' ')
+          if [ -z "$CHANGED" ]; then
+            CHANGED="prompts/v1.yaml"
+          fi
+          echo "files=$CHANGED" >> "$GITHUB_OUTPUT"
+
+      - name: Run evaluation
+        id: eval
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          set +e
+          for f in ${{ steps.changed.outputs.files }}; do
+            echo "Evaluating $f"
+            python run_eval.py --prompt-version "$f"
+            STATUS=$?
+          done
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: reports/latest_report.html
+
+      - name: Post summary comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const status = "${{ steps.eval.outputs.status }}";
+            const emoji = status === "0" ? "✅" : "🚨";
+            const body = `${emoji} **Model regression eval finished** with exit code ${status}.\n\nFull diff report uploaded as a build artifact (see "eval-report" in this run's Artifacts).`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body,
+            });
+
+      - name: Fail build on critical regression
+        if: steps.eval.outputs.status != '0'
+        run: |
+          echo "Critical regression detected -- blocking merge."
+          exit 1
