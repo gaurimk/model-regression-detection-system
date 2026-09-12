@@ -13,9 +13,10 @@
 5. [Installation Steps](#installation-steps)
 6. [Usage Instructions](#usage-instructions)
 7. [Generated Artifacts & Reports](#generated-artifacts--reports)
-8. [Contribution Guidelines](#contribution-guidelines)
-9. [Project Roadmap](#project-roadmap)
-10. [License](#license)
+8. [Example Output](#example-output)
+9. [Contribution Guidelines](#contribution-guidelines)
+10. [Project Roadmap](#project-roadmap)
+11. [License](#license)
 
 ---
 
@@ -101,7 +102,7 @@ These steps assume basic familiarity with a terminal. No prior AI/ML experience 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-org/model-regression-detection-system.git
+   git clone https://github.com/gaurimk/model-regression-detection-system.git
    cd model-regression-detection-system
    ```
 
@@ -199,6 +200,30 @@ This project produces the following outputs each time it runs:
 - **PR comment** — An automatically posted summary on GitHub pull requests showing whether the change is safe to merge.
 
 These artifacts are designed to be understandable at a glance by non-technical stakeholders, while still offering full detail for engineers who need to debug a specific case.
+
+---
+
+## Example Output
+
+Real output from a live run of this project, using the actual OpenAI API and a real Slack workspace — not mocked screenshots.
+
+### HTML Report — Baseline Run (prompt v1)
+
+The first evaluation run has nothing to compare against yet, so it's shown as a clean baseline: 70.7% pass rate, zero regressions, zero improvements.
+
+![Baseline HTML report for prompt v1](docs/screenshots/report_v1_baseline.png)
+
+### HTML Report — After a Prompt Change (prompt v2)
+
+After switching to prompt `v2`, the report immediately shows what changed against the v1 baseline: 1 case regressed (`acct-004`), 1 case improved, and a slow-drift warning fired because the 7-run rolling average had dipped below the configured 90% floor — exactly the kind of gradual decline a single run alone wouldn't catch.
+
+![HTML report showing a detected regression for prompt v2](docs/screenshots/report_v2_regression.png)
+
+### Slack Alerts
+
+Each evaluation run posts automatically to the configured Slack channel, with the pass/fail badge, the headline numbers, which specific test cases regressed, and a link to the full report — no one has to go looking for this information.
+
+![Slack channel showing automated regression alerts](docs/screenshots/slack_alerts.png)
 
 ---
 
